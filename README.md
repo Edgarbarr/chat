@@ -1,5 +1,6 @@
 # chat
 
-##Collaborator
-*Kelson, Sunflail added
-*Edgar, edgarmbarr added
+## Collaborator
+
+- Kelson, Sunflail added
+- Edgar, edgarmbarr added
