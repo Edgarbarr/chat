@@ -11,9 +11,22 @@ delete all users
 */
 
 // if you used mongoose then it would need a schema and to create the model
+const mongoose = require("mongoose");
 
+const userSchema = new mongoose.Schema({
+  username: { type: String, unique: true },
+  password: String,
+});
+
+const User = mongoose.model("user", userSchema);
+
+const models = {
+  getAllUsers: () => User.find(),
+};
+
+module.exports = models;
 // const userSchema = mongoose.Schema({
-//   id: Number,      
+//   id: Number,
 //   username: {   <---- say you wanna add more than just type, you can make an object. mongoose docs has more
 //     type: String,
 //     required: true,
