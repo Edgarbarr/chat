@@ -28,3 +28,10 @@ router
 
 
 */
+
+const router = require("express").Router();
+const controllers = require("../controllers/user");
+
+router.route("/").get(controllers.getAllUsers);
+
+module.exports = router;
