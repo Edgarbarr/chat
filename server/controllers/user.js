@@ -33,6 +33,14 @@ const controller = {
       })
       .catch((err) => console.error(err));
   },
+  addUser: (req, res) => {
+    models
+      .addUser(req.body)
+      .then((newUser) => {
+        res.send(newUser);
+      })
+      .catch((err) => console.error(err));
+  },
 };
 
 module.exports = controller;
