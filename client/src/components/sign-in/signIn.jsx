@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
 
@@ -13,6 +13,7 @@ const SignIn = () => {
   const onChangeHandler = (e) => {
     setFormValues({ [e.target.id]: e.target.value });
   };
+  let { email, password } = formValues;
   return (
     <Form>
       <h2>Sign In</h2>
@@ -36,7 +37,7 @@ const SignIn = () => {
         }
         required
       />
-      <input className="submit-button" type="submit" value={"Sign In"}></input>
+      <input className="submit-button" type="button" value={"Sign In"}></input>
     </Form>
   );
 };

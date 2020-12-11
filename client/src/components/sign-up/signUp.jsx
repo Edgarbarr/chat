@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
+import axios from "axios";
 
 const SignUp = () => {
   const [formValues, setFormValues] = useReducer(
@@ -15,7 +16,17 @@ const SignUp = () => {
   const handleChange = (e) => {
     setFormValues({ [e.target.id]: e.target.value });
   };
-  const handleSubmit = () => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("/user", { username, email, password })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => console.error(err));
+  };
+
   const { username, email, password, confirmPassword } = formValues;
   return (
     <Form>
@@ -59,7 +70,7 @@ const SignUp = () => {
       />
       <input
         className="submit-button"
-        type="submit"
+        type="button"
         onClick={handleSubmit}
         value="Sign Up"
       ></input>
