@@ -49,6 +49,14 @@ const controller = {
       })
       .catch((err) => res.send(err));
   },
+  removeUserByName: (req, res) => {
+    models
+      .removeUserByName(req.params.username)
+      .then((oldUser) => {
+        res.send(oldUser);
+      })
+      .catch((err) => res.send(err));
+  },
 };
 
 module.exports = controller;

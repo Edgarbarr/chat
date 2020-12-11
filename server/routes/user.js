@@ -38,7 +38,11 @@ router
   .get(controllers.getAllUsers)
   .post(controllers.addUser)
   .delete(controllers.removeAllUsers);
-router.route("/:username").get(controllers.getUserByName);
+
+router
+  .route("/:username")
+  .get(controllers.getUserByName)
+  .delete(controllers.removeUserByName);
 
 //delete user, delete users, change username (see if still holds to unique requirement), change password,
 
