@@ -25,6 +25,18 @@ const models = {
     const specific = await User.findOne({ username });
     return specific;
   },
+  addUser: async (body) => {
+    let newName = body.name;
+    newName = new User({
+      username: body.username,
+      password: body.password,
+      email: body.email,
+    });
+
+    const doc = await newName.save();
+    console.log(doc);
+    return doc;
+  },
 };
 
 //model for a helper function when we need to run more complciated logic on a request
