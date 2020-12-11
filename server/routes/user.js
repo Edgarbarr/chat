@@ -45,6 +45,7 @@ router.route("/register").post(controllers.addUser);
 router
   .route("/:username")
   .get(controllers.getUserByName)
+  .put(controllers.changeUsername) // basic functionality, can easily be moved to the appropriate route
   .delete(controllers.removeUserByName);
 
 // route /login take body, finds user by email, and returns the user object

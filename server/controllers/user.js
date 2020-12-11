@@ -49,6 +49,14 @@ const controller = {
       })
       .catch((err) => console.error(err));
   },
+  changeUsername: (req, res) => {
+    models
+      .changeUsername(req.params.username, req.body.newUsername)
+      .then((newName) => {
+        res.send(newName);
+      })
+      .catch((err) => res.send(err));
+  },
   removeAllUsers: (req, res) => {
     models
       .removeAllUsers()

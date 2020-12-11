@@ -41,6 +41,12 @@ const models = {
     console.log(doc);
     return doc;
   },
+  changeUsername: async (username, newUsername) => {
+    const tempUser = await User.findOne({ username: username });
+    tempUser.username = newUsername;
+    const doc = await tempUser.save();
+    return doc;
+  },
   removeAllUsers: async () => {
     await User.deleteMany({});
   },
