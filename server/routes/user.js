@@ -45,12 +45,12 @@ router.route("/register").post(controllers.addUser);
 router
   .route("/:username")
   .get(controllers.getUserByName)
-  .put(controllers.changeUsername) // basic functionality, can easily be moved to the appropriate route
+  .put(controllers.changeUsername) // basic functionality, can easily be moved to the appropriate route - thought process is to take a POST from a button, pass that through middleware next to a put on the DB and res.send back the new object
   .delete(controllers.removeUserByName);
 
 // route /login take body, finds user by email, and returns the user object
 router.route("/login").post(controllers.getUserByEmail);
 
-//change username (see if still holds to unique requirement), change password
+//change password
 
 module.exports = router;
