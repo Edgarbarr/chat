@@ -15,9 +15,9 @@ const Chat = () => {
       </S.ChatBox>
       <div className="chat-input-container">
         <S.ChatInput type="text"></S.ChatInput>
-        <button>
+        <S.SendButton>
           <img className="send-icon" src="/icons/paper-plane-regular.svg" />
-        </button>
+        </S.SendButton>
       </div>
     </S.ChatContainer>
   );

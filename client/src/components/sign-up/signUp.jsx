@@ -2,8 +2,10 @@ import React, { useReducer } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
+  const history = useHistory();
   const [formValues, setFormValues] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -19,12 +21,15 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("/user", { username, email, password })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => console.error(err));
+    history.push("/dashboard");
+
+    // axios
+    //   .post("/user/register", { username, email, password })
+    //   .then((response) => {
+    //     console.log(response);
+    //     history.push("/dashboard");
+    //   })
+    //   .catch((err) => console.error(err));
   };
 
   const { username, email, password, confirmPassword } = formValues;
