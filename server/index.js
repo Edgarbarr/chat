@@ -7,6 +7,7 @@
 const express = require("express");
 const db = require("../database");
 const userRouter = require("./routes/User");
+const path = require("path");
 
 const app = express();
 
@@ -14,9 +15,7 @@ app.use(express.json());
 
 app.use("/user", userRouter);
 
-app.get("/", (req, res) => {
-  res.send("hello from express");
-});
+app.use(express.static(path.join(__dirname, "../client/public")));
 
 io.on('connection', (socket) => {
   console.log('a user connected');
