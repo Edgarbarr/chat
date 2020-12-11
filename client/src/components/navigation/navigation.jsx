@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./styles";
-const Nav = ({ isLoading }) => {
+import { Redirect } from "react-router-dom";
+
+const Nav = () => {
+  const [redirect, setRedirect] = useState(false);
   const handleSignOut = () => {
-    console.log("you logged out");
+    setRedirect(true);
   };
   return (
     <S.Nav>
+      {redirect ? <Redirect to="/" /> : null}
       <ul>
         <li>
           <button onClick={handleSignOut}>

@@ -12,7 +12,9 @@ export const ChatContainer = styled.div`
     flex-direction: row nowrap;
   }
   .send-icon {
-    height: 75%;
+    height: 40%;
+    position: relative;
+    right: 10%;
   }
   @media only screen and (max-width: 500px) {
     width: 100%;
@@ -27,6 +29,9 @@ export const ChatBox = styled.ul`
   display: flex;
   flex-flow: column nowrap;
   padding: 25px;
+  @media screen and (max-width: 500px) {
+    margin: 0;
+  }
 `;
 
 export const IncomingMessage = styled.li`
@@ -64,11 +69,19 @@ export const ChatInput = styled.input`
   border: none;
   border-radius: 0;
   border-bottom: 1px solid #b68f40;
-  width: 100%;
+  width: 85%;
+  border-radius: 20px 0 0 20px;
+  margin-left: 5px;
+  outline: none;
+  border: none;
+  height: 40px;
 `;
 
 export const SendButton = styled.button`
-  height: 100%;
-  display: flex;
-  justify-content: center;
+  border-radius: 0 20px 20px 0;
+  margin-right: 5px;
+  border: none;
+  outline: none;
+  width: 15%;
+  height: 40px;
 `;
