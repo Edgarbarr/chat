@@ -10,9 +10,6 @@ delete all users
 
 // if you used mongoose then it would need a schema and to create the model
 const mongoose = require("mongoose");
-const {
-  db,
-} = require("../../../../JS-practice/node-demo/mongoose-zellwk/database/models/Character");
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
