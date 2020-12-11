@@ -33,6 +33,14 @@ const controller = {
       })
       .catch((err) => console.error(err));
   },
+  getUserByEmail: (req, res) => {
+    models
+      .getUserByEmail(req.body.email)
+      .then((user) => {
+        res.send(user);
+      })
+      .catch((err) => res.send(err));
+  },
   addUser: (req, res) => {
     models
       .addUser(req.body)

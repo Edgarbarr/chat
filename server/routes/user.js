@@ -32,18 +32,24 @@ router
 const router = require("express").Router();
 const controllers = require("../controllers/User");
 
-// /user route - all routes using this controlls have /user first! (eg /kelson is /user/kelson)
+// /user route - all routes using this controlls have /user first! (eg /register is /user/register)
 router
   .route("/")
   .get(controllers.getAllUsers)
-  .post(controllers.addUser)
   .delete(controllers.removeAllUsers);
 
+// /register will take req.body - res with successful message or error eventually - for now send user
+router.route("/register").post(controllers.addUser);
+
+// route /:username for getting and removing users by name
 router
   .route("/:username")
   .get(controllers.getUserByName)
   .delete(controllers.removeUserByName);
 
-//delete user, delete users, change username (see if still holds to unique requirement), change password,
+// route /login take body, finds user by email, and returns the user object
+router.route("/login").post(controllers.getUserByEmail);
+
+//change username (see if still holds to unique requirement), change password
 
 module.exports = router;
