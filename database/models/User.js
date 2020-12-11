@@ -28,6 +28,10 @@ const models = {
     const specific = await User.findOne({ username });
     return specific;
   },
+  getUserByEmail: async (email) => {
+    const specific = await User.findOne({ email });
+    return specific;
+  },
   addUser: async (body) => {
     let newName = body.name;
     newName = new User({
