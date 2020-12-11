@@ -26,7 +26,8 @@ const App = () => {
     <>
       <GlobalStyles />
       <Switch>
-        <Route path="/" exact component={DashBoard} />
+        <Route path="/" exact component={LandingPage} />
+        <Route path="/dashboard" component={DashBoard} />
       </Switch>
     </>
   );

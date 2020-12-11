@@ -1,8 +1,11 @@
 import React, { useReducer } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
+  const history = useHistory();
   const [formValues, setFormValues] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -15,7 +18,20 @@ const SignUp = () => {
   const handleChange = (e) => {
     setFormValues({ [e.target.id]: e.target.value });
   };
-  const handleSubmit = () => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push("/dashboard");
+
+    // axios
+    //   .post("/user/register", { username, email, password })
+    //   .then((response) => {
+    //     console.log(response);
+    //     history.push("/dashboard");
+    //   })
+    //   .catch((err) => console.error(err));
+  };
+
   const { username, email, password, confirmPassword } = formValues;
   return (
     <Form>
@@ -59,7 +75,7 @@ const SignUp = () => {
       />
       <input
         className="submit-button"
-        type="submit"
+        type="button"
         onClick={handleSubmit}
         value="Sign Up"
       ></input>
