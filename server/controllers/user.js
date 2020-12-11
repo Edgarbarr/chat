@@ -41,6 +41,14 @@ const controller = {
       })
       .catch((err) => console.error(err));
   },
+  removeAllUsers: (req, res) => {
+    models
+      .removeAllUsers()
+      .then((users) => {
+        res.send(users);
+      })
+      .catch((err) => res.send(err));
+  },
 };
 
 module.exports = controller;

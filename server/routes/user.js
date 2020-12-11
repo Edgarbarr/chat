@@ -33,7 +33,13 @@ const router = require("express").Router();
 const controllers = require("../controllers/User");
 
 // /user route - all routes using this controlls have /user first! (eg /kelson is /user/kelson)
-router.route("/").get(controllers.getAllUsers).post(controllers.addUser);
+router
+  .route("/")
+  .get(controllers.getAllUsers)
+  .post(controllers.addUser)
+  .delete(controllers.removeAllUsers);
 router.route("/:username").get(controllers.getUserByName);
+
+//delete user, delete users, change username (see if still holds to unique requirement), change password,
 
 module.exports = router;
