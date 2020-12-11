@@ -21,15 +21,14 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push("/dashboard");
-
-    // axios
-    //   .post("/user/register", { username, email, password })
-    //   .then((response) => {
-    //     console.log(response);
-    //     history.push("/dashboard");
-    //   })
-    //   .catch((err) => console.error(err));
+    // history.push("/dashboard");
+    axios
+      .post("/user/register", { username, email, password })
+      .then((response) => {
+        console.log(response);
+        history.push("/dashboard");
+      })
+      .catch((err) => console.error(err));
   };
 
   const { username, email, password, confirmPassword } = formValues;

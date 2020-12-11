@@ -21,7 +21,6 @@ export const ChatContainer = styled.div`
     min-width: 100%;
   }
 `;
-
 export const ChatBox = styled.ul`
   width: 100%;
   height: 90%;

@@ -18,14 +18,14 @@ const SignIn = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push("/dashboard");
 
-    // axios
-    //   .post("/user/login", { email, password })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((err) => console.error(err));
+    axios
+      .post("/user/login", { email, password })
+      .then((response) => {
+        history.push("/dashboard");
+        console.log(response);
+      })
+      .catch((err) => console.error(err));
   };
   let { email, password } = formValues;
   return (
