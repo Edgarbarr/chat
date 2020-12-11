@@ -1,5 +1,3 @@
-// good idea to do db connection first since this needs it
-
 /* 
 get user by field, <----- some basic crud operations we would need for user. 
 get user by id,
@@ -14,15 +12,28 @@ delete all users
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, unique: true },
-  password: String,
+  username: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  email: String,
 });
 
 const User = mongoose.model("user", userSchema);
 
 const models = {
-  getAllUsers: () => User.find(),
+  getAllUsers: () => User.find().sort({ username: 1 }),
+  getUserByName: async (username) => {
+    const specific = await User.findOne({ username });
+    return specific;
+  },
 };
+
+//model for a helper function when we need to run more complciated logic on a request
+// async function findUsers(username) {
+//   const specific = await User.findOne({ username: username });
+//   const all = await User.find().sort({ username: 1 });
+//   console.log(`${specific.name} found: ${specific} \n All Characters: ${all}`);
+//   return specific;
+// }
 
 module.exports = models;
 // const userSchema = mongoose.Schema({

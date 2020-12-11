@@ -30,8 +30,10 @@ router
 */
 
 const router = require("express").Router();
-const controllers = require("../controllers/user");
+const controllers = require("../controllers/User");
 
+// /user route - all routes using this controlls have /user first! (eg /kelson is /user/kelson)
 router.route("/").get(controllers.getAllUsers);
+router.route("/:username").get(controllers.getUserByName);
 
 module.exports = router;
