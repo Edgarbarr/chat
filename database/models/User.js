@@ -65,17 +65,6 @@ const models = {
 // }
 
 module.exports = models;
-// const userSchema = mongoose.Schema({
-//   id: Number,
-//   username: {   <---- say you wanna add more than just type, you can make an object. mongoose docs has more
-//     type: String,
-//     required: true,
-//   },
-//   email: String,
-//   password: String,
-// });
-
-// const User = mongoose.model("User", userSchema);
 
 // const models = {      <----- example of a model queries, this is what you export to use in controllers
 //     getAllUsers: () => User.find(),
