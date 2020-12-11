@@ -18,4 +18,17 @@ app.get("/", (req, res) => {
   res.send("hello from express");
 });
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
+      console.log('message: ' + msg)
+  })
+  socket.on('disconnect', () => {
+      console.log('user disconnected');
+  });
+});
+
 app.listen(3000);
