@@ -1,5 +1,5 @@
-//good idea to do models first since you need to import them here
 //const User = require("path to models for user")
+const models = require("../../database/models/User");
 
 // controllers for user routes
 // one controller for each crud operation in users model
@@ -16,14 +16,20 @@
 //    otherController: (req, res) => User.otherModelQuery().then().catch()
 // };
 
-const models = require("../../database/models/user");
-
 const controller = {
   getAllUsers: (req, res) => {
     models
       .getAllUsers()
       .then((users) => {
         res.send(users);
+      })
+      .catch((err) => console.error(err));
+  },
+  getUserByName: (req, res) => {
+    models
+      .getUserByName(req.params.username)
+      .then((specific) => {
+        res.send(specific);
       })
       .catch((err) => console.error(err));
   },
