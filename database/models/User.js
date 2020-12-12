@@ -25,22 +25,25 @@ const models = {
     const specific = await User.findOne({ username });
     return specific;
   },
-  getUserByEmail: async (email) => {
-    const specific = await User.findOne({ email });
-    return specific;
-  },
-  addUser: async (body) => {
-    let newName = body.name;
-    newName = new User({
-      username: body.username,
-      password: body.password,
-      email: body.email,
-    });
+  // getUserByEmail: async (email) => {
+  //   const specific = await User.findOne({ email });
+  //   return specific;
+  // },
+  getUserByEmail: (email) => User.findOne({ email }),
+  // addUser: async (body) => {
+  //   let newName = body.name;
+  //   newName = new User({
+  //     username: body.username,
+  //     password: body.password,
+  //     email: body.email,
+  //   });
 
-    const doc = await newName.save();
-    console.log(doc);
-    return doc;
-  },
+  //   const doc = await newName.save();
+  //   console.log(doc);
+  //   return doc;
+  // },
+  addUser: ({ username, email, password }) =>
+    User.create({ username, email, password }),
   changeUsername: async (username, newUsername) => {
     const tempUser = await User.findOne({ username: username });
     tempUser.username = newUsername;
