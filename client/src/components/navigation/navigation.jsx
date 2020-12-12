@@ -21,7 +21,7 @@ const Nav = () => {
       <ul>
         <li>
           <button onClick={handleMoreInfo}>
-            <img src="/icons/door-open-solid.svg" />
+            <img src="/icons/info-circle-solid.svg" />
           </button>
         </li>
         <li>

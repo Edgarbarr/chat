@@ -36,6 +36,9 @@ export const Home = styled.div`
       width: 50%;
       padding: 75px;
       text-align: center;
+      font-variant-caps: small-caps;
+      font-weight: 900;
+      -webkit-text-stroke: 1px black;
     }
     @media screen and (min-width: 2500px) {
       h1 {

@@ -22,7 +22,7 @@ const LandingPage = () => {
         </button>
       </div>
       <div className="main">
-        <h1>Kelson & friends Chat App</h1>
+        <h1>Kelson & Friends Chat App</h1>
       </div>
     </S.Home>
   );

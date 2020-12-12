@@ -10,6 +10,9 @@ export const ChatContainer = styled.div`
   .chat-input-container {
     display: flex;
     flex-direction: row nowrap;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
   }
   .send-icon {
     height: 40%;
@@ -23,7 +26,7 @@ export const ChatContainer = styled.div`
 `;
 export const ChatBox = styled.ul`
   width: 100%;
-  height: 90%;
+  height: calc(100% - 50px);
   list-style: none;
   display: flex;
   flex-flow: column nowrap;

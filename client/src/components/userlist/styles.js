@@ -9,7 +9,7 @@ export const UserListContainer = styled.div.attrs((props) => ({
   float: right;
   background-color: #536f86;
   opacity: 1;
-  transition: width 0.4s ease-in, opacity 0.4s ease-in;
+  transition: width 0.2s ease-in, opacity 0.2s ease-in;
   @media screen and (max-width: 500px) {
     z-index: 3;
     position: absolute;
