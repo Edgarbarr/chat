@@ -8,10 +8,12 @@ export const Dashboard = styled.div`
   padding: 10px;
   position: relative;
   max-width: 2300px;
+  margin: auto;
 
   @media screen and (max-width: 425px) {
-    flex-direction: column;
+    flex-direction: row;
     padding: 0;
+    position: relative;
   }
   h1,
   h2 {
@@ -24,7 +26,7 @@ export const Dashboard = styled.div`
   .main-div {
     border-radius: 8px;
     color: white;
-    width: 100%;
+    width: fit-content;
     height: 100%;
     position: relative;
     z-index: 2;

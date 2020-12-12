@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
     <S.Dashboard>
       <Nav />
-      {/* <UserList /> */}
+      <UserList />
       <div className="main-div">
         <Chat />
       </div>

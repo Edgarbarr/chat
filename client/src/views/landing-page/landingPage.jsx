@@ -21,7 +21,9 @@ const LandingPage = () => {
           <span>{type === "Sign In" ? "Sign Up" : "Sign In"}</span>
         </button>
       </div>
-      <div className="main"></div>
+      <div className="main">
+        <h1>Kelson & friends Chat App</h1>
+      </div>
     </S.Home>
   );
 };

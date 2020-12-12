@@ -333,8 +333,11 @@ template {
   font-family: 'Lato';
 }
 body {
-  /* display: flex; */
-  /* justify-content: center; */
+  background-color: #2e2e2e;
 }
+#app {
+  margin: auto;
+}
+
 `;
 export default GlobalStyle;

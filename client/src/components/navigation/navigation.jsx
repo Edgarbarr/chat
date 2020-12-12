@@ -7,12 +7,20 @@ const Nav = () => {
   const handleSignOut = () => {
     setRedirect(true);
   };
+  const handleMoreInfo = () => {
+    const userList = document.getElementById("user-list");
+    if (userList.offsetWidth) {
+      userList.setAttribute("style", "width: 0; opacity: 0;");
+    } else {
+      userList.setAttribute("style", "opacity: 1; width:100%;");
+    }
+  };
   return (
     <S.Nav>
       {redirect ? <Redirect to="/" /> : null}
       <ul>
         <li>
-          <button onClick={handleSignOut}>
+          <button onClick={handleMoreInfo}>
             <img src="/icons/door-open-solid.svg" />
           </button>
         </li>

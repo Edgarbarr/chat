@@ -1,23 +1,32 @@
 import styled from "styled-components";
 
-export const UserListContainer = styled.div`
+export const UserListContainer = styled.div.attrs((props) => ({
+  id: props.id,
+}))`
   width: 100%;
   height: 100%;
   max-width: 500px;
   float: right;
-  background-color: #6c8da9;
+  background-color: #536f86;
+  opacity: 1;
+  transition: width 0.4s ease-in, opacity 0.4s ease-in;
+  @media screen and (max-width: 500px) {
+    z-index: 3;
+    position: absolute;
+    padding-top: 200px;
+  }
 
   .current-user-container {
-      width: 100%;
-      height: 100%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-flow: row wrap;
-    overflow: auto
+    overflow: auto;
   }
-  }
+
   @media only screen and (max-width: 500px) {
-    width: 100%;
-    min-width: 100%;
+    width: 0;
+    opacity: 0;
   }
 `;
 export const UserActionBox = styled.ul`
