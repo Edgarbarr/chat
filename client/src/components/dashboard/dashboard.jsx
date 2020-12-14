@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Nav from "../navigation";
 import * as S from "./styles";
 import Chat from "../chat";
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <S.Dashboard>
-      <Nav />
+      <Nav socket={props.socket}/>
       <div className="main-div">
-        <Chat />
+        <Chat socket={props.socket}/>
       </div>
     </S.Dashboard>
   );

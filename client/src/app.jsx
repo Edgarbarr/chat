@@ -3,8 +3,11 @@ import LandingPage from "./views/landing-page";
 import GlobalStyles from "./global.styles";
 import { Route, Switch } from "react-router-dom";
 import DashBoard from "./components/dashboard";
-import socketIOClient from "socket.io-client";
-const io = socketIOClient("http://localhost:3000/");
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:3000/");
+
+
 const App = () => {
   useEffect(() => {}, []);
   return (
@@ -12,7 +15,7 @@ const App = () => {
       <GlobalStyles />
       <Switch>
         <Route path="/" exact component={LandingPage} />
-        <Route path="/dashboard" component={DashBoard} />
+        <Route path="/dashboard" component= {()=><DashBoard socket={socket}/>} />
       </Switch>
     </>
   );

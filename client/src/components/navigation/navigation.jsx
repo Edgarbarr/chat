@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import * as S from "./styles";
 import { Redirect } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
   const [redirect, setRedirect] = useState(false);
   const handleSignOut = () => {
-    setRedirect(true);
+    let socket = props.socket;
+    socket.emit("Message", {message: "this is nav"})
   };
   return (
     <S.Nav>
