@@ -8,6 +8,7 @@ import Spinner from "../../components/spinner";
 const Dashboard = () => {
   const [user] = useContext(UserContext);
   const { isLoading } = user;
+  const hello = "string";
   return (
     <S.Dashboard>
       {isLoading ? (
