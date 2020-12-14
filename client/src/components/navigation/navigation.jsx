@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import * as S from "./styles";
 import { Redirect } from "react-router-dom";
 
-const Nav = () => {
+const Nav = (props) => {
   const [redirect, setRedirect] = useState(false);
 
   const handleSignOut = () => {
     localStorage.removeItem("user");
     setRedirect(true);
+    let socket = props.socket;
+    socket.emit("Message", { message: "this is nav" });
   };
   const handleMoreInfo = (e) => {
     const userList = document.getElementById("user-list");
