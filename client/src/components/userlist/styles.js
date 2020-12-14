@@ -7,9 +7,10 @@ export const UserListContainer = styled.div.attrs((props) => ({
   height: 100%;
   max-width: 500px;
   float: right;
-  background-color: #536f86;
+  background-color: #2e4658;
   opacity: 1;
   transition: width 0.2s ease-in, opacity 0.2s ease-in;
+  
   @media screen and (max-width: 500px) {
     z-index: 3;
     position: absolute;
@@ -70,7 +71,7 @@ export const UserEntered = styled.li`
 
 export const UserExited = styled.li`
   display: flex;
-  background-color: cadetblue;
+  background-color: cadetblue; //#84c3c5
   width: fit-content;
   height: fit-content;
   min-height: 50px;
