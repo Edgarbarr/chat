@@ -1,18 +1,31 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
 import axios from "axios";
 import useForm from "../form/useForm";
 import { useHistory } from "react-router-dom";
+import UserContext from "../../UserContext";
 
 const SignIn = () => {
   const history = useHistory();
+  const [user, setUser] = useContext(UserContext);
+
   const handleSignIn = () =>
-    axios.post("/user/login", { email, password }).then((response) => {
-      console.log(response);
-      setIsSubmitting(false);
-      history.push("/dashboard");
-    });
+    axios
+      .post("/user/login", {
+        email,
+        password,
+      })
+      .then((response) => {
+        const { data } = response;
+        setUser({ username: data.username, isLoading: false });
+        localStorage.setItem("user", JSON.stringify(data.token));
+        setIsSubmitting(false);
+        history.push("/dashboard");
+      });
+  const forgotPasswordHandler = () => {
+    history.push("/change-password");
+  };
   const {
     handleChange,
     errors,
@@ -58,7 +71,11 @@ const SignIn = () => {
           isSubmitting && !Object.keys(errors).length ? ". . ." : "Sign In"
         }
       ></input>
+      <button className="forgotPassword" onClick={forgotPasswordHandler}>
+        Forgot password?
+      </button>
     </Form>
   );
 };
+
 export default SignIn;

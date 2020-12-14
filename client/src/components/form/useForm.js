@@ -42,9 +42,9 @@ const useForm = (submit, activeValues) => {
   useEffect(() => {
     let noErrors = Object.keys(errors).length === 0;
     if (noErrors && isSubmitting) {
-      console.log({ submit });
       submit().catch((err) => {
-        let { type, message } = err.response.data;
+        console.log(err, "hello");
+        let { type, message } = err.response?.data;
         setErrors({
           ...errors,
           [type]: message,

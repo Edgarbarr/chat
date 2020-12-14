@@ -31,7 +31,7 @@ export const Home = styled.div`
       display: none;
     }
     h1 {
-      font-size: 50px;
+      font-size: 55px;
       color: white;
       width: 50%;
       padding: 75px;
@@ -39,6 +39,7 @@ export const Home = styled.div`
       font-variant-caps: small-caps;
       font-weight: 900;
       -webkit-text-stroke: 1px black;
+      text-shadow: 1px 1px 3px #666666;
     }
     @media screen and (min-width: 2500px) {
       h1 {

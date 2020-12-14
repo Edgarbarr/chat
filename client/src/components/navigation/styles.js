@@ -12,20 +12,34 @@ export const Nav = styled.div`
     margin-right: 10px;
     list-style: none;
     padding-right: 0;
+    .active {
+      background-color: white;
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+    }
+    @media screen and (max-width: 425px) {
+      .active {
+        border-radius: 25px;
+      }
+    }
 
     li {
       padding-right: 10px;
       margin: 20px 0;
+
       :hover {
-        background-color: white;
-        border-top-left-radius: 25px;
-        border-bottom-left-radius: 25px;
+        img {
+          filter: invert(87%) sepia(21%) saturate(4739%) hue-rotate(345deg)
+            brightness(90%) contrast(88%);
+        }
       }
       @media screen and (max-width: 425px) {
-        padding-right: 0;
         :hover {
-          border-radius: 25px;
+          img {
+            filter: unset;
+          }
         }
+        padding-right: 0;
       }
     }
     @media screen and (max-width: 425px) {

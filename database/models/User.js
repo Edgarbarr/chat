@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, unique: true, required: true, sparse: true },
+  confirmed: {
+    type: Boolean,
+    required: true,
+    default: "false",
+  },
 });
 
 const User = mongoose.model("user", userSchema);
@@ -50,6 +55,7 @@ const models = {
     const doc = await tempUser.save();
     return doc;
   },
+  updateUser: (query, update) => User.findOneAndUpdate(query, update),
   removeAllUsers: async () => {
     await User.deleteMany({});
   },

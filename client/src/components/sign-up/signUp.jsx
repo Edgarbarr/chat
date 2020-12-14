@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
 import axios from "axios";
 import useForm from "../form/useForm";
-
+import Confirmation from "../confirmation";
 const SignUp = () => {
+  const [confirmAccount, setConfirmAccount] = useState(null);
+
   const handleSignUp = () =>
     axios
       .post("/user/register", { username, email, password })
       .then((response) => {
-        console.log(response);
+        setConfirmAccount(response.data);
         setIsSubmitting(false);
+        document
+          .getElementById("confirmation")
+          .style.setProperty("display", "flex");
       });
 
   const {
@@ -85,6 +90,7 @@ const SignUp = () => {
           isSubmitting && !Object.keys(errors).length ? ". . ." : "Sign Up"
         }
       ></input>
+      <Confirmation confirmAccount={confirmAccount} />
     </Form>
   );
 };
