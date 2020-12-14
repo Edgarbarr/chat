@@ -3,8 +3,6 @@ import LandingPage from "./views/landing-page";
 import GlobalStyles from "./global.styles";
 import { Route, Switch } from "react-router-dom";
 import DashBoard from "./views/dashboard";
-import socketIOClient from "socket.io-client";
-const io = socketIOClient("http://localhost:3000/");
 import axios from "axios";
 import ProtectedRoute from "./components/protectedRoute.jsx";
 import { UserContext } from "./UserContext";
@@ -13,6 +11,10 @@ import Confirmation from "./components/confirmation";
 import ChangePassword from "./views/changePassword";
 import SendChangePassword from "./views/sendChangePassword/sendChangePassword.jsx";
 import OutOfBounds from "./views/out-of-bounds";
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:3000/");
+
 const App = () => {
   const history = useHistory();
   const [user, setUser] = useContext(UserContext);
@@ -42,7 +44,11 @@ const App = () => {
       <GlobalStyles />
       <Switch>
         <Route path="/" exact component={LandingPage} />
-        <ProtectedRoute exact path="/dashboard" component={DashBoard} />
+        <ProtectedRoute
+          exact
+          path="/dashboard"
+          component={() => <DashBoard socket={socket} />}
+        />
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/change-password" component={SendChangePassword} />
         <Route

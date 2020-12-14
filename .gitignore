@@ -106,3 +106,6 @@ dist
 # Bundle JS from react
 bundle.js
 bundle.js.LICENSE.txt
+
+#Private keys
+.pem
