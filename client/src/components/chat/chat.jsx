@@ -1,80 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import * as S from "./styles";
-const Chat = () => {
+const Chat = (props) => {
+  const [messages, setMessages] = useState("Chris");
+  const [chatInputField, setChatInputField] = useState("");
+  const onClickHandler = ()=>{
+    setMessages("Kelson");
+  
+    props.socket.emit('Message', {message: chatInputField});
+    setChatInputField("");
+    }
+    const onChangeHandler = (event)=>{
+      setChatInputField(event.currentTarget.value)
+    }
   return (
     <S.ChatContainer>
       <S.ChatBox>
-        <S.OutgoingMessage>Hello, Edgar hows it goin</S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
-        <S.OutgoingMessage>
-          Hello, Edgar hows it going?Hello, Edgar hows it going?Hello, Edgar
-          hows it going?Hello, Edgar hows it going?vv
-        </S.OutgoingMessage>
-        <S.IncomingMessage>I'm chilling bro wbu?</S.IncomingMessage>
-        <S.OutgoingMessage>Nothin just coding or w/e</S.OutgoingMessage>
-        <S.IncomingMessage>thats cool</S.IncomingMessage>
+       <S.IncomingMessage >{messages}</S.IncomingMessage>
       </S.ChatBox>
       <div className="chat-input-container">
-        <S.ChatInput type="text"></S.ChatInput>
-        <S.SendButton>
+        <S.ChatInput value={chatInputField} onChange={onChangeHandler} id="chat-input" type="text"></S.ChatInput>
+        <S.SendButton onClick={onClickHandler}>
           <img className="send-icon" src="/icons/paper-plane-regular.svg" />
         </S.SendButton>
       </div>

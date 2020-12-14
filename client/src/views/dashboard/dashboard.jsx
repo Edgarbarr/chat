@@ -5,7 +5,7 @@ import Chat from "../../components/chat";
 import UserList from "../../components/userlist";
 import { UserContext } from "../../UserContext";
 import Spinner from "../../components/spinner";
-const Dashboard = () => {
+const Dashboard = (props) => {
   const [user] = useContext(UserContext);
   const { isLoading } = user;
   return (
@@ -14,10 +14,10 @@ const Dashboard = () => {
         <Spinner />
       ) : (
         <>
-          <Nav />
+          <Nav socket={props.socket}/>
           <UserList />
           <div className="main-div">
-            <Chat />
+            <Chat socket={props.socket}/>
           </div>
         </>
       )}
