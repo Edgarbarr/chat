@@ -1,23 +1,33 @@
 import styled from "styled-components";
 
-export const UserListContainer = styled.div`
+export const UserListContainer = styled.div.attrs((props) => ({
+  id: props.id,
+}))`
   width: 100%;
   height: 100%;
   max-width: 500px;
   float: right;
-  background-color: #6c8da9;
+  background-color: #2e4658;
+  opacity: 1;
+  transition: width 0.2s ease-in, opacity 0.2s ease-in;
+  
+  @media screen and (max-width: 500px) {
+    z-index: 3;
+    position: absolute;
+    padding-top: 200px;
+  }
 
   .current-user-container {
-      width: 100%;
-      height: 100%;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-flow: row wrap;
-    overflow: auto
+    overflow: auto;
   }
-  }
+
   @media only screen and (max-width: 500px) {
-    width: 100%;
-    min-width: 100%;
+    width: 0;
+    opacity: 0;
   }
 `;
 export const UserActionBox = styled.ul`
@@ -61,7 +71,7 @@ export const UserEntered = styled.li`
 
 export const UserExited = styled.li`
   display: flex;
-  background-color: cadetblue;
+  background-color: cadetblue; //#84c3c5
   width: fit-content;
   height: fit-content;
   min-height: 50px;

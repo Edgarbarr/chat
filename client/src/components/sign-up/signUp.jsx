@@ -1,37 +1,39 @@
-import React, { useReducer } from "react";
+import React, { useState } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-
+import useForm from "../form/useForm";
+import Confirmation from "../confirmation";
 const SignUp = () => {
-  const history = useHistory();
-  const [formValues, setFormValues] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    }
-  );
-  const handleChange = (e) => {
-    setFormValues({ [e.target.id]: e.target.value });
-  };
+  const [confirmAccount, setConfirmAccount] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // history.push("/dashboard");
+  const handleSignUp = () =>
     axios
       .post("/user/register", { username, email, password })
       .then((response) => {
-        console.log(response);
-        history.push("/dashboard");
-      })
-      .catch((err) => console.error(err));
-  };
+        setConfirmAccount(response.data);
+        setIsSubmitting(false);
+        document
+          .getElementById("confirmation")
+          .style.setProperty("display", "flex");
+      });
 
-  const { username, email, password, confirmPassword } = formValues;
+  const {
+    handleChange,
+    errors,
+    isValidating,
+    handleSubmit,
+    formValues,
+    isSubmitting,
+    setIsSubmitting,
+  } = useForm(handleSignUp, {
+    email: 1,
+    password: 1,
+    confirmPassword: 1,
+    username: 1,
+  });
+
+  const { email, password, confirmPassword, username } = formValues;
   return (
     <Form>
       <h2>Sign Up</h2>
@@ -41,6 +43,8 @@ const SignUp = () => {
         id="username"
         value={username}
         handleChange={handleChange}
+        error={errors.username}
+        isValidating={isValidating}
         required
       />
       <FormInput
@@ -49,6 +53,8 @@ const SignUp = () => {
         id="email"
         value={email}
         handleChange={handleChange}
+        error={errors.email}
+        isValidating={isValidating}
         required
       />
       <FormInput
@@ -61,6 +67,8 @@ const SignUp = () => {
           "Must contain at least one number and one uppercase and lowercase letter and at least 8 or more characters"
         }
         handleChange={handleChange}
+        error={errors.password}
+        isValidating={isValidating}
         required
       />
       <FormInput
@@ -70,14 +78,19 @@ const SignUp = () => {
         title="Passwords must match"
         value={confirmPassword}
         handleChange={handleChange}
+        error={errors.confirmPassword}
+        isValidating={isValidating}
         required
       />
       <input
         className="submit-button"
-        type="button"
+        type="submit"
         onClick={handleSubmit}
-        value="Sign Up"
+        value={
+          isSubmitting && !Object.keys(errors).length ? ". . ." : "Sign Up"
+        }
       ></input>
+      <Confirmation confirmAccount={confirmAccount} />
     </Form>
   );
 };

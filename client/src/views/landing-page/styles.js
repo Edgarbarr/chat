@@ -15,14 +15,39 @@ export const Home = styled.div`
   );
   background-position: center center;
   background-size: cover;
+  max-width: 2300px;
+  margin: auto;
 
   .main {
     display: flex;
-    width: auto;
+    width: 60%;
     height: auto;
     background-color: transparent;
-
-    
+    background-image: url("https://images.pexels.com/photos/4559747/pexels-photo-4559747.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4559747.jpg&fm=jpg");
+    background-position: center;
+    background-size: cover;
+    @media screen and (max-width: 760px) {
+      width: 0;
+      display: none;
+    }
+    h1 {
+      font-size: 55px;
+      color: white;
+      width: 50%;
+      padding: 75px;
+      text-align: center;
+      font-variant-caps: small-caps;
+      font-weight: 900;
+      -webkit-text-stroke: 1px black;
+      text-shadow: 1px 1px 3px #666666;
+    }
+    @media screen and (min-width: 2500px) {
+      h1 {
+        font-size: 120px;
+        width: 50%;
+        padding: 100px;
+      }
+    }
   }
   form {
     box-shadow: 2px 0 5px black;
@@ -30,10 +55,13 @@ export const Home = styled.div`
   }
   .aside {
     display: flex;
-    width: 600px;
+    width: 40%;
     height: auto;
     background-color: white;
     overflow: auto;
+    @media screen and (max-width: 760px) {
+      width: 100%;
+    }
   }
   button {
     background-color: grey;

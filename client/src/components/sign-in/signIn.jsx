@@ -1,33 +1,41 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
+import useForm from "../form/useForm";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../UserContext";
 
 const SignIn = () => {
   const history = useHistory();
-  const [formValues, setFormValues] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      email: "",
-      password: "",
-    }
-  );
-  const onChangeHandler = (e) => {
-    setFormValues({ [e.target.id]: e.target.value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [user, setUser] = useContext(UserContext);
 
+  const handleSignIn = () =>
     axios
-      .post("/user/login", { email, password })
-      .then((response) => {
-        history.push("/dashboard");
-        console.log(response);
+      .post("/user/login", {
+        email,
+        password,
       })
-      .catch((err) => console.error(err));
+      .then((response) => {
+        const { data } = response;
+        setUser({ username: data.username, isLoading: false });
+        localStorage.setItem("user", JSON.stringify(data.token));
+        setIsSubmitting(false);
+        history.push("/dashboard");
+      });
+  const forgotPasswordHandler = () => {
+    history.push("/change-password");
   };
-  let { email, password } = formValues;
+  const {
+    handleChange,
+    errors,
+    isValidating,
+    handleSubmit,
+    formValues,
+    isSubmitting,
+    setIsSubmitting,
+  } = useForm(handleSignIn, { email: 1, password: 1 });
+  const { email, password } = formValues;
   return (
     <Form>
       <h2>Sign In</h2>
@@ -36,7 +44,9 @@ const SignIn = () => {
         label="email"
         id="email"
         value={email}
-        onChange={onChangeHandler}
+        handleChange={handleChange}
+        error={errors.email}
+        isValidating={isValidating}
         required
       />
       <FormInput
@@ -44,20 +54,28 @@ const SignIn = () => {
         label="password"
         id="password"
         value={password}
-        onChange={onChangeHandler}
         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
         title={
           "Must contain at least one number and one uppercase and lowercase letter and at least 8 or more characters"
         }
+        handleChange={handleChange}
+        error={errors.password}
+        isValidating={isValidating}
         required
       />
       <input
         className="submit-button"
-        type="button"
-        value={"Sign In"}
+        type="submit"
         onClick={handleSubmit}
+        value={
+          isSubmitting && !Object.keys(errors).length ? ". . ." : "Sign In"
+        }
       ></input>
+      <button className="forgotPassword" onClick={forgotPasswordHandler}>
+        Forgot password?
+      </button>
     </Form>
   );
 };
+
 export default SignIn;

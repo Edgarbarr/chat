@@ -4,6 +4,7 @@ module.exports = {
     path: __dirname + "/client/public",
     filename: "bundle.js",
   },
+  devtool: "source-map",
   module: {
     rules: [
       {

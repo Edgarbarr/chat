@@ -3,7 +3,7 @@ import * as S from "./styles";
 
 const UserList = () => {
   return (
-    <S.UserListContainer>
+    <S.UserListContainer id="user-list">
       Chat User Activity:
       <S.UserActionBox>
         <S.UserEntered>Bob has entered the chat.</S.UserEntered>

@@ -53,4 +53,14 @@ router.route("/login").post(controllers.getUserByEmail);
 
 //change password
 
+router.route("/authenticate").post(controllers.authenticateUser);
+
+router.route("/confirmation/:token").get(controllers.confirmUserEmail);
+
+router.route("/change-password").post(controllers.sendPasswordEmail);
+
+router.route("/change-password/:token").put(controllers.changePassword);
+
+router.route("/send-confirmation").post(controllers.sendConfirmationEmail);
+
 module.exports = router;
