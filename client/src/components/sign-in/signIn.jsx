@@ -6,7 +6,7 @@ import useForm from "../form/useForm";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../UserContext";
 
-const SignIn = () => {
+const SignIn = ({socket}) => {
   const history = useHistory();
   const [user, setUser] = useContext(UserContext);
 
@@ -21,6 +21,7 @@ const SignIn = () => {
         setUser({ username: data.username, isLoading: false });
         localStorage.setItem("user", JSON.stringify(data.token));
         setIsSubmitting(false);
+
         history.push("/dashboard");
       });
   const forgotPasswordHandler = () => {

@@ -36,8 +36,10 @@ export const Dashboard = styled.div`
     box-shadow: 3px 3px 5px #00000059;
     background-color: #496277;
     position: relative;
+    min-width: 500px;
 
     @media screen and (max-width: 425px) {
+      width: 100%;
       background-color: #6c8da9;
       padding-top: 200px;
       border-radius: 0;
