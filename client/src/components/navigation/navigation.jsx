@@ -9,7 +9,6 @@ const Nav = (props) => {
     localStorage.removeItem("user");
     setRedirect(true);
     let socket = props.socket;
-    socket.emit("Message", { message: "this is nav" });
   };
   const handleMoreInfo = (e) => {
     const userList = document.getElementById("user-list");

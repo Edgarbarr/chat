@@ -41,12 +41,12 @@ const Chat = ({ socket }) => {
         {messages.map((msg) => {
           console.log({ msg }, { user });
 
-          if (msg.user.id === user.id) {
+          if (msg.user?.id === user.id) {
             return (
               <S.OutgoingMessage>
                 <span className="text">{msg.message}</span>
                 <span className="username">
-                  {msg.user.username} - {moment(msg.date).fromNow()}
+                  {msg.user?.username} - {moment(msg.date).fromNow()}
                 </span>
               </S.OutgoingMessage>
             );
@@ -55,7 +55,7 @@ const Chat = ({ socket }) => {
               <S.IncomingMessage>
                 <span className="text">{msg.message}</span>
                 <span className="username">
-                  {msg.user.username} - {moment(msg.date).fromNow()}
+                  {msg.user?.username} - {moment(msg.date).fromNow()}
                 </span>
               </S.IncomingMessage>
             );
