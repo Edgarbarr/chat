@@ -14,10 +14,10 @@ const Dashboard = (props) => {
         <Spinner />
       ) : (
         <>
-          <Nav socket={props.socket}/>
-          <UserList />
+          <Nav socket={props.socket} />
+          <UserList socket={props.socket} />
           <div className="main-div">
-            <Chat socket={props.socket}/>
+            <Chat socket={props.socket} />
           </div>
         </>
       )}

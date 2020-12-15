@@ -6,7 +6,7 @@ import useForm from "../form/useForm";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../UserContext";
 
-const SignIn = ({socket}) => {
+const SignIn = ({ socket }) => {
   const history = useHistory();
   const [user, setUser] = useContext(UserContext);
 
@@ -21,7 +21,9 @@ const SignIn = ({socket}) => {
         setUser({ username: data.username, isLoading: false });
         localStorage.setItem("user", JSON.stringify(data.token));
         setIsSubmitting(false);
-
+        console.log(`this is socket ${socket}`);
+        console.log(data);
+        socket.emit("admin-user-join", data.username);
         history.push("/dashboard");
       });
   const forgotPasswordHandler = () => {
