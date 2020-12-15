@@ -1,6 +1,6 @@
 const express = require("express");
 const db = require("../database");
-const userRouter = require("./routes/User");
+const userRouter = require("./routes/user");
 const path = require("path");
 const app = express();
 const http = require("http").createServer(app);
