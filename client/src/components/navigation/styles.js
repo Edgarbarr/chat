@@ -17,7 +17,7 @@ export const Nav = styled.div`
       border-top-left-radius: 25px;
       border-bottom-left-radius: 25px;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 500px) {
       .active {
         border-radius: 25px;
       }
@@ -33,7 +33,7 @@ export const Nav = styled.div`
             brightness(90%) contrast(88%);
         }
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 500px) {
         :hover {
           img {
             filter: unset;
@@ -42,7 +42,7 @@ export const Nav = styled.div`
         padding-right: 0;
       }
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 500px) {
       display: flex;
       flex-direction: row;
       width: 100%;

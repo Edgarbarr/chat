@@ -26,7 +26,7 @@ const Nav = (props) => {
     <S.Nav>
       {redirect ? <Redirect to="/" /> : null}
       <ul>
-        <li className={window.innerWidth > 425 ? "active" : ""}>
+        <li className={window.innerWidth > 500 ? "active" : ""}>
           <button onClick={handleMoreInfo}>
             <img src="/icons/info-circle-solid.svg" />
           </button>
