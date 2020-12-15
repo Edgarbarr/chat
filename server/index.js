@@ -32,5 +32,10 @@ io.on("connection", (socket) => {
   socket.on("Message", (message) => {
     io.emit("Message", message);
   });
+
+  socket.on("admin-user-join", (displayName) => {
+    console.log("passing to userlist");
+    io.emit("admin-userlist-show", displayName);
+  });
 });
 http.listen(3000);
