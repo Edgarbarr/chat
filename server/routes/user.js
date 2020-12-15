@@ -30,7 +30,7 @@ router
 */
 
 const router = require("express").Router();
-const controllers = require("../controllers/User");
+const controllers = require("../controllers/user");
 
 // /user route - all routes using this controlls have /user first! (eg /register is /user/register)
 router
