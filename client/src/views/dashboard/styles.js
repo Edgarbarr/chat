@@ -12,7 +12,7 @@ export const Dashboard = styled.div`
   justify-content: center;
   overflow: hidden;
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 500px) {
     flex-direction: row;
     padding: 0;
     position: relative;
@@ -29,16 +29,16 @@ export const Dashboard = styled.div`
   .main-div {
     border-radius: 8px;
     color: white;
-    width: fit-content;
+    width: 100%;
     height: 100%;
     position: relative;
     z-index: 2;
     box-shadow: 3px 3px 5px #00000059;
     background-color: #496277;
     position: relative;
-    min-width: 500px;
-
-    @media screen and (max-width: 425px) {
+    max-width: 500px;
+    display: flex;
+    @media screen and (max-width: 500px) {
       width: 100%;
       background-color: #6c8da9;
       padding-top: 200px;

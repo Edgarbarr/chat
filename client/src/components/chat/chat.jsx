@@ -6,10 +6,14 @@ const Chat = ({ socket }) => {
   const [user, setUser] = useContext(UserContext);
   const [messages, setMessages] = useState([]);
   const [chatInputField, setChatInputField] = useState("");
-  // const [clientID, setClientID] = useState("");
   const onClickHandler = () => {
-    socket.emit("Message", { message: chatInputField, id: user.id });
+    socket.emit("Message", { message: chatInputField, user });
     setChatInputField("");
+  };
+  const onEnterPressed = (event) => {
+    if (event.key === "Enter") {
+      onClickHandler();
+    }
   };
   const onChangeHandler = (event) => {
     setChatInputField(event.currentTarget.value);
@@ -26,8 +30,14 @@ const Chat = ({ socket }) => {
       <S.ChatBox>
         {messages.map((msg) => {
           console.log(msg, user);
-          if (msg.id === user.id) {
-            return <S.OutgoingMessage>{msg.message}</S.OutgoingMessage>;
+
+          if (msg.user.id === user.id) {
+            return (
+              <S.OutgoingMessage>
+                <span className="text">{msg.message}</span>
+                <span className="username">- {msg.user.username}</span>
+              </S.OutgoingMessage>
+            );
           } else {
             return <S.IncomingMessage>{msg.message}</S.IncomingMessage>;
           }
@@ -35,6 +45,7 @@ const Chat = ({ socket }) => {
       </S.ChatBox>
       <div className="chat-input-container">
         <S.ChatInput
+          onKeyPress={onEnterPressed}
           value={chatInputField}
           onChange={onChangeHandler}
           id="chat-input"
