@@ -30,9 +30,9 @@ export const ChatBox = styled.ul`
   list-style: none;
   flex-flow: column wrap;
   padding: 25px;
-  overflow: hidden;
   word-break: break-all;
   word-wrap: break-word;
+  overflow: scroll;
   display: block;
 
   @media screen and (max-width: 500px) {
@@ -50,7 +50,11 @@ export const IncomingMessage = styled.li`
   margin: 3px 0;
   flex-flow: column wrap;
   .username {
-    font-size: 3px;
+    font-size: 10px;
+    float: right;
+    display: flex;
+    align-self: flex-end;
+    padding-left: 5px;
   }
 `;
 
@@ -69,6 +73,7 @@ export const OutgoingMessage = styled.li`
     float: right;
     display: flex;
     align-self: flex-end;
+    padding-left: 5px;
   }
 `;
 
