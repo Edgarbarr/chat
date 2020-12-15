@@ -39,7 +39,7 @@ const Chat = ({ socket }) => {
     <S.ChatContainer>
       <S.ChatBox id="chat-box">
         {messages.map((msg) => {
-          console.log(msg, user);
+          console.log({ msg }, { user });
 
           if (msg.user.id === user.id) {
             return (

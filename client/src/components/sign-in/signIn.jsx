@@ -18,7 +18,7 @@ const SignIn = ({ socket }) => {
       })
       .then((response) => {
         const { data } = response;
-        setUser({ username: data.username, isLoading: false });
+        setUser({ username: data.username, isLoading: false, id: user.id });
         localStorage.setItem("user", JSON.stringify(data.token));
         setIsSubmitting(false);
         console.log(`this is socket ${socket}`);

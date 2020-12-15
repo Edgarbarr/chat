@@ -41,14 +41,15 @@ export const ChatBox = styled.ul`
 `;
 
 export const IncomingMessage = styled.li`
+  display: flex;
   background-color: darkgoldenrod;
   width: fit-content;
   height: fit-content;
-  align-self: flex-end;
   padding: 10px;
   border-radius: 15px 5px 15px 20px;
   margin: 3px 0;
   flex-flow: column wrap;
+  margin-left: auto;
   .username {
     font-size: 10px;
     float: right;
@@ -63,7 +64,6 @@ export const OutgoingMessage = styled.li`
   background-color: cadetblue;
   width: fit-content;
   height: fit-content;
-  justify-self: flex-start;
   padding: 10px;
   border-radius: 5px 20px 15px 15px;
   margin: 3px 0;
