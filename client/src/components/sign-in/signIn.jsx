@@ -14,7 +14,7 @@ const SignIn = ({ socket }) => {
   const handleSignIn = () =>
     axios
       .post("/user/login", {
-        email,
+        email: email.toLowerCase(),
         password,
       })
       .then((response) => {

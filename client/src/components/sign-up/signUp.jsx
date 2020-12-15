@@ -9,7 +9,11 @@ const SignUp = () => {
 
   const handleSignUp = () =>
     axios
-      .post("/user/register", { username, email, password })
+      .post("/user/register", {
+        username,
+        email: email.toLowerCase(),
+        password,
+      })
       .then((response) => {
         setConfirmAccount(response.data);
         setIsSubmitting(false);
