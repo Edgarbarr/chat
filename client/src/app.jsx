@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import LandingPage from "./views/landing-page";
 import GlobalStyles from "./global.styles";
 import { Route, Switch } from "react-router-dom";
@@ -13,12 +13,16 @@ import SendChangePassword from "./views/sendChangePassword/sendChangePassword.js
 import OutOfBounds from "./views/out-of-bounds";
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:3000/");
-
 const App = () => {
   const history = useHistory();
+  const socketRef = useRef();
   const [user, setUser] = useContext(UserContext);
   useEffect(() => {
+    socketRef.current = io.connect("http://localhost:3000/");
+    let userId;
+    socketRef.current.on("connection", (socketId) => {
+      userId = socketId;
+    });
     let token = JSON.parse(localStorage.getItem("user"));
     if (token) {
       axios
@@ -27,7 +31,8 @@ const App = () => {
         })
         .then((response) => {
           const username = response.data;
-          setUser({ username, isLoading: false });
+          console.log("omg", userId);
+          setUser({ username, isLoading: false, id: userId });
           history.push("/dashboard");
         })
         .catch((err) => {
@@ -43,11 +48,15 @@ const App = () => {
     <>
       <GlobalStyles />
       <Switch>
-        <Route path="/" exact component={LandingPage} />
+        <Route
+          path="/"
+          exact
+          component={() => <LandingPage socket={socketRef.current} />}
+        />
         <ProtectedRoute
           exact
           path="/dashboard"
-          component={() => <DashBoard socket={socket} />}
+          component={() => <DashBoard socket={socketRef.current}/>}
         />
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/change-password" component={SendChangePassword} />

@@ -4,7 +4,7 @@ import SignIn from "../../components/sign-in/signIn.jsx";
 import SignUp from "../../components/sign-up/signUp.jsx";
 import { UserContext } from "../../UserContext";
 import Spinner from "../../components/spinner";
-const LandingPage = () => {
+const LandingPage = ({socket}) => {
   const [type, setType] = useState("Sign In");
   const [user] = useContext(UserContext);
 
@@ -23,7 +23,7 @@ const LandingPage = () => {
       ) : (
         <S.Home>
           <div className="aside">
-            {type === "Sign In" ? <SignIn /> : <SignUp />}
+            {type === "Sign In" ? <SignIn socket={socket}/> : <SignUp />}
             <button onClick={onClickHandler}>
               <span>{type === "Sign In" ? "Sign Up" : "Sign In"}</span>
             </button>
