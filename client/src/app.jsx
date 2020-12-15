@@ -17,33 +17,35 @@ const App = () => {
   const history = useHistory();
   const socketRef = useRef();
   const [user, setUser] = useContext(UserContext);
+
   useEffect(() => {
     socketRef.current = io.connect("http://localhost:3000/");
     let userId;
     socketRef.current.on("connection", (socketId) => {
       userId = socketId;
+      let token = JSON.parse(localStorage.getItem("user"));
+      if (token) {
+        axios
+          .post("/user/authenticate", {
+            token,
+          })
+          .then((response) => {
+            const username = response.data;
+            console.log("omg", userId);
+            setUser({ username, isLoading: false, id: userId });
+            history.push("/dashboard");
+          })
+          .catch((err) => {
+            setUser({ username: null, isLoading: false, id: userId });
+            localStorage.removeItem("user");
+            console.log(err);
+          });
+      } else {
+        setUser({ username: null, isLoading: false, id: userId });
+      }
     });
-    let token = JSON.parse(localStorage.getItem("user"));
-    if (token) {
-      axios
-        .post("/user/authenticate", {
-          token,
-        })
-        .then((response) => {
-          const username = response.data;
-          console.log("omg", userId);
-          setUser({ username, isLoading: false, id: userId });
-          history.push("/dashboard");
-        })
-        .catch((err) => {
-          setUser({ username: null, isLoading: false });
-          localStorage.removeItem("user");
-          console.log(err);
-        });
-    } else {
-      setUser({ username: null, isLoading: false });
-    }
   }, []);
+
   return (
     <>
       <GlobalStyles />
@@ -56,7 +58,7 @@ const App = () => {
         <ProtectedRoute
           exact
           path="/dashboard"
-          component={() => <DashBoard socket={socketRef.current}/>}
+          component={() => <DashBoard socket={socketRef.current} />}
         />
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/change-password" component={SendChangePassword} />

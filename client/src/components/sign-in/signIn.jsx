@@ -1,4 +1,4 @@
-import React, { useReducer, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Form from "../form";
 import FormInput from "../form-input";
 import axios from "axios";
@@ -9,6 +9,7 @@ import UserContext from "../../UserContext";
 const SignIn = ({ socket }) => {
   const history = useHistory();
   const [user, setUser] = useContext(UserContext);
+  // const [clientID, setClientID] = useState();
 
   const handleSignIn = () =>
     axios
@@ -18,7 +19,14 @@ const SignIn = ({ socket }) => {
       })
       .then((response) => {
         const { data } = response;
-        setUser({ username: data.username, isLoading: false, id: user.id });
+        console.log("user log in");
+        console.log(socket);
+        setUser({
+          username: data.username,
+          isLoading: false,
+          id: user.id,
+          kelson: "kelson",
+        });
         localStorage.setItem("user", JSON.stringify(data.token));
         setIsSubmitting(false);
         console.log(`this is socket ${socket}`);
