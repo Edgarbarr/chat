@@ -27,7 +27,6 @@ const Chat = ({ socket }) => {
   }, [messages]);
   useEffect(() => {
     socket.on("Message", (message) => {
-      console.log("hello");
       setMessages((oldState) => [...oldState, message]);
     });
   }, []);
@@ -39,8 +38,6 @@ const Chat = ({ socket }) => {
     <S.ChatContainer>
       <S.ChatBox id="chat-box">
         {messages.map((msg) => {
-          console.log({ msg }, { user });
-
           if (msg.user?.id === user.id) {
             return (
               <S.OutgoingMessage>

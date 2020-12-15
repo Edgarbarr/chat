@@ -22,11 +22,9 @@ app.get("/*", function (req, res) {
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
   socket.emit("connection", socket.id);
 
   socket.on("disconnect", () => {
-    console.log("user disconnected");
   });
 
   socket.on("Message", (message) => {
@@ -34,7 +32,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("admin-user-join", (displayName) => {
-    console.log("passing to userlist");
     io.emit("admin-userlist-show", displayName);
   });
 });

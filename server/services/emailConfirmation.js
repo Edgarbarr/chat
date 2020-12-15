@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 const fs = require("fs");
 
 function emailConfirm(user) {
-  console.log(user);
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

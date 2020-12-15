@@ -10,7 +10,7 @@ export const UserListContainer = styled.div.attrs((props) => ({
   background-color: #2e4658;
   opacity: 1;
   transition: width 0.2s ease-in, opacity 0.2s ease-in;
-  
+
   @media screen and (max-width: 500px) {
     z-index: 3;
     position: absolute;
@@ -52,6 +52,7 @@ export const CurrentUserBox = styled.ul`
   flex-flow: row wrap;
   padding: 25px;
   overflow: auto;
+  align-content: start;
 
   @media screen and (max-width: 500px) {
     margin: 0;

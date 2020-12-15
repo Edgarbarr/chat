@@ -43,7 +43,6 @@ const useForm = (submit, activeValues) => {
     let noErrors = Object.keys(errors).length === 0;
     if (noErrors && isSubmitting) {
       submit().catch((err) => {
-        console.log(err, "hello");
         let { type, message } = err.response?.data;
         setErrors({
           ...errors,

@@ -31,14 +31,12 @@ const App = () => {
           })
           .then((response) => {
             const username = response.data;
-            console.log("omg", userId);
             setUser({ username, isLoading: false, id: userId });
             history.push("/dashboard");
           })
           .catch((err) => {
             setUser({ username: null, isLoading: false, id: userId });
             localStorage.removeItem("user");
-            console.log(err);
           });
       } else {
         setUser({ username: null, isLoading: false, id: userId });

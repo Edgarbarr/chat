@@ -6,7 +6,6 @@ const UserList = ({ socket }) => {
 
   useEffect(() => {
     socket.on("admin-userlist-show", (displayName) => {
-      console.log(`${displayName} is inside userlist`);
       setActiveUsers((oldState) => [...oldState, displayName]);
     });
   }, []);
@@ -16,7 +15,6 @@ const UserList = ({ socket }) => {
       Chat User Activity:
       <S.UserActionBox>
         {activeUsers.map((singleUser) => {
-          console.log(`${singleUser} added to active users list`);
           return (
             <S.UserEntered>
               {`${singleUser.toUpperCase()} has entered the arena!!`}
@@ -28,7 +26,6 @@ const UserList = ({ socket }) => {
       <S.CurrentUserBox>
         <S.UserInChat>Bob</S.UserInChat>
         {activeUsers.map((singleUser) => {
-          console.log(`${singleUser} added to current users list`);
           return <S.UserInChat>{`${singleUser.toUpperCase()}`}</S.UserInChat>;
         })}
       </S.CurrentUserBox>

@@ -19,8 +19,7 @@ const SignIn = ({ socket }) => {
       })
       .then((response) => {
         const { data } = response;
-        console.log("user log in");
-        console.log(socket);
+
         setUser({
           username: data.username,
           isLoading: false,
@@ -29,8 +28,6 @@ const SignIn = ({ socket }) => {
         });
         localStorage.setItem("user", JSON.stringify(data.token));
         setIsSubmitting(false);
-        console.log(`this is socket ${socket}`);
-        console.log(data);
         socket.emit("admin-user-join", data.username);
         history.push("/dashboard");
       });

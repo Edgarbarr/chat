@@ -11,11 +11,9 @@ const Confirmation = ({ confirmAccount }) => {
   const resendConfirmation = () => {
     axios
       .post("/user/send-confirmation", confirmAccount)
-      .then((response) => {
-        console.log(response);
-      })
+      .then((response) => {})
       .catch((e) => {
-        console.log(e);
+        console.error(e);
       });
   };
   const propagationHandler = (e) => {

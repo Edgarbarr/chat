@@ -8,7 +8,6 @@ import { Redirect } from "react-router-dom";
 const ChangePassword = () => {
   const [changeSuccess, setChangeSuccess] = useState(false);
   const handleSignUp = (e) => {
-    console.log(email);
     return axios
       .post("/user/change-password", {
         email,
